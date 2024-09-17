@@ -6,7 +6,6 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import Mdx from "@/components/mdx-component";
-import { title } from "process";
 import { Metadata } from "next";
 
 async function getPostFromSlug(slug: string) {
@@ -15,8 +14,8 @@ async function getPostFromSlug(slug: string) {
     return post;
 }
 
-export async function generateMetadata({ slug }: { slug: string }): Promise<Metadata> {
-    const page = await getPostFromSlug(slug);
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+    const page = await getPostFromSlug(params.slug);
 
     if(!page) {
         return {};
